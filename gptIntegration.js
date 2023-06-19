@@ -1,11 +1,14 @@
 import {Configuration, OpenAIApi} from "openai";
 import say from "say";
+import dotenv from 'dotenv';
+dotenv.config();
 
 const config = new Configuration({
-    apiKey: "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",
+    apiKey: process.env.OPENAI_API_KEY,
 });
 
 const openai = new OpenAIApi(config);
+
 
 export class GPTIntegrator{
 
