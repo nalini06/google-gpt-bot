@@ -15,7 +15,7 @@ app.use(express.static("./public"));
 app.use(bodyParser.json());
 
 app.use((req, res, next) => {
-    res.setHeader("Access-Control-Allow-Origin", "https://google-gpt-bot-k2hl-arayanw03-nalini06.vercel.app");
+    res.setHeader("Access-Control-Allow-Origin", "https://google-gpt-bot-k2hl.vercel.app");
     res.setHeader(
       "Access-Control-Allow-Methods",
       "GET, POST, OPTIONS, PUT, PATCH, DELETE"
