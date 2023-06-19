@@ -7,7 +7,7 @@
     "routes": [
       { "src": "/run-node-app", "dest": "server.js", "methods": ["POST"], "timeout": 10 },
       { "src": "/run-gptInt-app", "dest": "server.js", "methods": ["POST"], "timeout": 10 },
-      { "src": "/run-feedback-app", "dest": "server.js", "methods": ["POST"], "timeout": 10 },
+      { "src": "/run-feedback-app", "dest": "server.js", "methods": ["POST"], "timeout": 30 },
       { "src": "/(.*)", "dest": "public/index.html" }
     ]
   }
