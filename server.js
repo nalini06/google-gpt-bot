@@ -66,3 +66,19 @@ app.post("/run-feedback-app", (req, res) => {
 
 export default serverless(app);
 
+/*{
+    "version": 2,
+    "builds": [
+      { "src": "public/index.html", "use": "@vercel/static" },
+      { "src": "server.js", "use": "@vercel/node" },
+      {"src": "gptIntegration.js", "use":"@vercel/node"},
+      {"src": "googleBot.js", "use":"@vercel/node"}
+    ],
+    "routes": [
+      { "src": "/run-node-app", "dest": "server.js" },
+      { "src": "/run-gptInt-app", "dest": "server.js" },
+      { "src": "/run-feedback-app", "dest": "server.js" },
+      { "src": "/", "dest": "public/index.html" }
+    ]
+  }
+  */
