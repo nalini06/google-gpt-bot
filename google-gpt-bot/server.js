@@ -14,6 +14,9 @@ const port = 3000;
 app.use(express.static("./public"));
 app.use(bodyParser.json());
 
+app.get("/", (req,res)=>{
+    res.send("Google bot server is running");
+})
 
 app.post("/run-node-app", (req, res) => {
     // Spawn a child process to run your Node.js application
