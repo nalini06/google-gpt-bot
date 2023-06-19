@@ -11,7 +11,7 @@ const router = express.Router();
 const app = express();
 const port = 3000;
 
-app.use(express.static("./public"));
+app.use(express.static("."));
 app.use(bodyParser.json());
 
 app.get("/", (req,res)=>{
