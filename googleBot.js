@@ -1,4 +1,4 @@
-import puppeteer from "puppeteer-extra";
+import puppeteer from "puppeteer";
 import StealthPlugin from "puppeteer-extra-plugin-stealth";
 import express from "express";
 import spawn from "child_process";
