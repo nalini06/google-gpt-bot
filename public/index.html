@@ -6,102 +6,91 @@
 </head>
 <body>
     <h1>Enter the meeting Link</h1>
-     <div>
-        <input type = "text" id ="google-meetinglink">
-     </div>
     <div>
-        <button id= "start-btn" class="btn btn-danger btn-block">
-             Join
+        <input type="text" id="google-meetinglink">
+    </div>
+    <div>
+        <button id="start-btn" class="btn btn-danger btn-block">
+            Join
         </button>
         <button id="mic">Ask</button>
     </div>
-</body>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-<script>
-    //import { GPTIntegrator } from "../gptIntegration.js"
 
-var speechRecognition = window.webkitSpeechRecognition
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script>
+        var speechRecognition = window.webkitSpeechRecognition;
+        var recognition = new speechRecognition();
+        var content = '';
 
-var recognition = new speechRecognition()
+        recognition.continuous = true;
 
-var content = ''
-
-recognition.continuous = true
-
-recognition.onresult = function(event){
-    var current = event.resultIndex;
-    var transcript = event.results[current][0].transcript
-    content += transcript
-}
-
-$("#mic").click(function(event){
-    if(content.length > 0 || content != ''){
-        content = '';
-    }
-        
-
-        fetch("/run-feedback-app", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-        })
-
-        setTimeout(function(){
-           recognition.start()
-        }, 3000)
-      
-        setTimeout(function(){
-   
-            const userReq = content
-        console.log("mic is on, processing " + userReq);
-        fetch("/run-gptInt-app", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ text: userReq})
-        }).then(function(response) {
-            if (response.ok) {
-                console.log("Node app started successfully");
-                recognition.stop()
-                content = '' 
-            } else {
-                console.error("Failed to start Node app");
-            }
-        })
-        .catch(function(error) {
-            console.error("Error:", error);
-        });
-
-        }, 10000)
-        recognition.stop()
-        
-})
-</script>
-<script>
-    document.getElementById("start-btn").addEventListener("click", function() {
-    // Send a request to the server to trigger the Node.js application
-    const meetingLink = document.getElementById("google-meetinglink").value;
-    console.log("clicked the button " + meetingLink);
-    fetch("/run-node-app", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ text: meetingLink})
-    }).then(function(response) {
-        if (response.ok) {
-            console.log("Node app started successfully");
-            
-            
-        } else {
-            console.error("Failed to start Node app");
+        recognition.onresult = function(event) {
+            var current = event.resultIndex;
+            var transcript = event.results[current][0].transcript;
+            content += transcript;
         }
-    })
-    .catch(function(error) {
-        console.error("Error:", error);
-    });
-});
-</script>
+
+        $("#mic").click(function(event) {
+            if (content.length > 0 || content != '') {
+                content = '';
+            }
+
+            fetch("https://google-gpt-bot.vercel.app/run-feedback-app", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+            });
+
+            setTimeout(function() {
+                recognition.start();
+            }, 3000);
+
+            setTimeout(function() {
+                const userReq = content;
+                console.log("mic is on, processing " + userReq);
+                fetch("https://google-gpt-bot.vercel.app/run-gptInt-app", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ text: userReq })
+                }).then(function(response) {
+                    if (response.ok) {
+                        console.log("Node app started successfully");
+                        recognition.stop();
+                        content = '';
+                    } else {
+                        console.error("Failed to start Node app");
+                    }
+                }).catch(function(error) {
+                    console.error("Error:", error);
+                });
+            }, 10000);
+            recognition.stop();
+        });
+    </script>
+    <script>
+        document.getElementById("start-btn").addEventListener("click", function() {
+            // Send a request to the server to trigger the Node.js application
+            const meetingLink = document.getElementById("google-meetinglink").value;
+            console.log("clicked the button " + meetingLink);
+            fetch("https://google-gpt-bot.vercel.app/run-node-app", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ text: meetingLink })
+            }).then(function(response) {
+                if (response.ok) {
+                    console.log("Node app started successfully");
+                } else {
+                    console.error("Failed to start Node app");
+                }
+            }).catch(function(error) {
+                console.error("Error:", error);
+            });
+        });
+    </script>
+</body>
 </html>
