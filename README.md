@@ -20,9 +20,7 @@ Generated text will be sent to chat gpt though openai api, and then generated re
 
 Currently deployed link is not working, node.js application is showing some error in render deploy enviorment. To work text to speech, "festival" library should in enviorment, that resource is in local machines, but not able to download into render deploy enviorment with out subscription.
 
- 
- 
- 
+This application is working fine in local enviorment, it can be easily tested by downloading the project, and run server.js
        
      
 
