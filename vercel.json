@@ -2,12 +2,12 @@
     "version": 2,
     "builds": [
       { "src": "public/index.html", "use": "@vercel/static" },
-      { "src": "server.js", "use": "@vercel/node" }
+      { "src": "*.js", "use": "@vercel/node" }
     ],
     "routes": [
-      { "src": "/run-node-app", "dest": "server.js" },
-      { "src": "/run-gptInt-app", "dest": "server.js" },
-      { "src": "/run-feedback-app", "dest": "server.js" },
+      { "src": "/run-node-app", "dest": "server.js", "methods": ["POST"], "timeout": 10 },
+      { "src": "/run-gptInt-app", "dest": "server.js", "methods": ["POST"], "timeout": 10 },
+      { "src": "/run-feedback-app", "dest": "server.js", "methods": ["POST"], "timeout": 10 },
       { "src": "/(.*)", "dest": "public/index.html" }
     ]
   }
