@@ -38,14 +38,14 @@ $("#mic").click(function(event){
     if(content.length > 0 || content != ''){
         content = '';
     }
+    
         
-        /*
         fetch("/run-feedback-app", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-        })*/
+        })
 
         setTimeout(function(){
            recognition.start()

@@ -7,7 +7,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-    "build": "apt-get install -y festival"
+    "build": "npm install -g festival"
   },
   "author": "",
   "license": "ISC",
