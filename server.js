@@ -14,20 +14,6 @@ const port = 3000;
 app.use(express.static("./public"));
 app.use(bodyParser.json());
 
-app.use((req, res, next) => {
-    res.setHeader("Access-Control-Allow-Origin", "https://google-gpt-bot-k2hl.vercel.app");
-    res.setHeader(
-      "Access-Control-Allow-Methods",
-      "GET, POST, OPTIONS, PUT, PATCH, DELETE"
-    );
-    res.setHeader(
-      "Access-Control-Allow-Headers",
-      "X-Requested-With, Content-Type, Accept"
-    );
-    res.setHeader("Access-Control-Allow-Credentials", true);
-    next();
-  });
-
 
 
 app.get("/", (req,res)=>{
