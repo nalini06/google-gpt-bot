@@ -9,7 +9,7 @@ import serverless from "serverless-http"
 
 const router = express.Router();
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 app.use(express.static("./public"));
 app.use(bodyParser.json());
@@ -59,9 +59,15 @@ app.post("/run-gptInt-app", (req, res) => {
 });
 
 
+
 app.post("/run-feedback-app", (req, res) => {
     // Spawn a child process to run your Node.js application
      say.speak("Please speak, Im Listening") 
+});
+
+
+app.listen(port, () => {
+    console.log(`Server running on http://localhost:${port}`);
 });
 
 export default serverless(app);
