@@ -17,6 +17,9 @@ Generated text will be sent to chat gpt though openai api, and then generated re
      I used "say" library from "say", this had function .speak("Text that you want to convert to speech").
   
   - If user wants to ask another question he just need to tap ask button again.
+
+Currently deployed link is not working, node.js application is showing some error in render deploy enviorment. To work text to speech, "festival" library should in enviorment, that resource is in local machines, but not able to download into render deploy enviorment with out subscription.
+
  
  
  
