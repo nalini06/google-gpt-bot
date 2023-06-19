@@ -69,5 +69,3 @@ app.listen(port, () => {
 });
 
 
-app.use('/.netlify/functions/server', router);
-export const handler = app;
